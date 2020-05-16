@@ -53,53 +53,54 @@ public class Results extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("success.jsp");
-		rd.forward(request, response);
-//		String file_name = null;
-//		
-//		response.setContentType("text/html");
-//		PrintWriter out = response.getWriter();
-//		boolean isMultipartContent = ServletFileUpload.isMultipartContent(request);
-//		if(!isMultipartContent) {
-//			return;
-//		}
-//		FileItemFactory factory = new DiskFileItemFactory();
-//		ServletFileUpload upload = new ServletFileUpload(factory);
-//		try {
-//			List <FileItem> fields = upload.parseRequest(request);
-//			Iterator <FileItem> it = fields.iterator();
-//			if(!it.hasNext()) {
-//				return;
-//			}
-//			while (it.hasNext()) {
-//				FileItem fileItem = it.next();
-//				boolean isFormField = fileItem.isFormField();
-//				if(isFormField) {
-//					if(file_name == null) {
-//						if(fileItem.getFieldName().equals("file_name")) {
-//							file_name = fileItem.getString();
-//						}
-//					}
-//				}else {
-//					if(fileItem.getSize() > 0) {
-//						fileItem.write(new File("C:\\uploaded_files\\" + fileItem.getName()));
-//						//////////////////////////////////////////////
+		
+		String file_name = null;
+		
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		boolean isMultipartContent = ServletFileUpload.isMultipartContent(request);
+		if(!isMultipartContent) {
+			return;
+		}
+		FileItemFactory factory = new DiskFileItemFactory();
+		ServletFileUpload upload = new ServletFileUpload(factory);
+		try {
+			
+			
+			List <FileItem> fields = upload.parseRequest(request);
+			Iterator <FileItem> it = fields.iterator();
+			if(!it.hasNext()) {
+				return;
+			}
+			while (it.hasNext()) {
+				FileItem fileItem = it.next();
+				boolean isFormField = fileItem.isFormField();
+				if(isFormField) {
+					if(file_name == null) {
+						if(fileItem.getFieldName().equals("file_name")) {
+							file_name = fileItem.getString();
+						}
+					}
+				}else {
+					if(fileItem.getSize() > 0) {
+						fileItem.write(new File("C:\\uploaded_files\\" + fileItem.getName()));
+						//////////////////////////////////////////////
 //						boolean booleanVar = true; //////// SPARK RETURN
 //						
 //						PatientBean ptBn = new PatientBean();
 //						ptBn.setPatientName(file_name);
 //						ptBn.setPatientResult(booleanVar);
-//						/////////////////////////////////////////////////
-//					}
-//				}
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			out.println("<script type='text/javascript'>");
-//			out.println("window.location.href='index.jsp?filename="+file_name+"'");
-//			out.println("</script>");
-//			out.close();
-//		}
+						/////////////////////////////////////////////////
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			out.println("<script type='text/javascript'>");
+			out.println("window.location.href='index.jsp?filename="+file_name+"'");
+			out.println("</script>");
+			out.close();
+		}
 	}
 }
