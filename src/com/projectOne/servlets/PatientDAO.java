@@ -10,13 +10,13 @@ public class PatientDAO {
 		
 	}
 	
-	public static int insertPatient() { //PatientBean u
+	public static int insertPatient(PatientBean u) { //PatientBean u
 		int status=0;
 		try {
 			conn=ConnectionProvider.getCon();
 			pst=conn.prepareStatement("insert into classificationResults(patientname, patientresult) values(?,?)");
-			pst.setString(1, "hi");// u.getPatientName()
-			pst.setBoolean(2, false);// u.isPatientResult()
+			pst.setString(1, u.getPatientName());// u.getPatientName() "hi"
+			pst.setString(2, u.getPatientResult());// u.isPatientResult() "false"
 			status=pst.executeUpdate();
 			conn.close();
 			

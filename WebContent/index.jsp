@@ -8,15 +8,16 @@
 </head>
 <body>
 	<center>
-		<h1>Upload Image to Database</h1>
+		<h1>Automated Gray Matter to White Matter Ratio Processor</h1>
+		<h2>Please upload region of interest (ROI) to database</h2>
 		<form method="post" action="Results" enctype="multipart/form-data">
 			<table>
 				<tr>
-					<td>Enter Dicome Volume Name</td>
+					<td>Enter Image Volume Name</td>
 					<td><input type="text" name="file_name"/></td>
 				</tr>
 				<tr>
-					<td>upload dicom volume:</td>
+					<td>Upload Volume:</td>
 					<td><input type="file" name="volume" /></td>
 				</tr>
 				<tr>

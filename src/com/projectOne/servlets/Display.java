@@ -2,11 +2,19 @@ package com.projectOne.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.*;
 import org.apache.spark.api.java.function.Function;
@@ -44,15 +52,10 @@ public class Display extends HttpServlet {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		PrintWriter out = response.getWriter();
-		out.println("Welcome To Display");
-		
-		PatientDAO.insertPatient();
-		
-		out.println("Test SQL");
 		
 		//Business Logic
 		SparkConf conf = new SparkConf();
-		conf.setAppName("Spark Demo Job");
+		conf.setAppName("Spark Process");
 		conf.setMaster("local");
 		JavaSparkContext sc = new JavaSparkContext(conf);
 		JavaRDD<String> lines = sc.textFile("C:/uploaded_files/input.csv"); 
@@ -64,10 +67,17 @@ public class Display extends HttpServlet {
 		});
 		
 		long linesCount = filteredLines.count();
-		String firstLine = filteredLines.first();
-		out.println("Total lines containing spark: " + linesCount);
-		out.println("First line containing spark: " + firstLine);
+		out.println("<h1> Results </h1>");
+		out.println("<h2> Percentage of Gray Matter in Region of Interest: " + linesCount/25 + "</h2>");
+		out.println("<h2>Percentage of White Matter in Region of Interest: " + (100-(linesCount/25)) + "</h2>");
 		sc.close();
+		
+		PatientBean pBB = new PatientBean();
+		String ptName = request.getParameter("file_name");		
+		pBB.setPatientName(ptName); ////
+		pBB.setPatientResult(linesCount + ": " + (2500-linesCount)); ////
+		
+		PatientDAO.insertPatient(pBB);
 				
 	}
 

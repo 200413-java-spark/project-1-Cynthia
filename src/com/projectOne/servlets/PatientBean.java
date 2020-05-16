@@ -2,17 +2,17 @@ package com.projectOne.servlets;
 
 public class PatientBean {
 	String patientName;
-	boolean patientResult;
+	String patientResult;
 	public String getPatientName() {
 		return patientName;
 	}
 	public void setPatientName(String patientName) {
 		this.patientName = patientName;
 	}
-	public boolean isPatientResult() {
+	public String getPatientResult() {
 		return patientResult;
 	}
-	public void setPatientResult(boolean patientResult) {
+	public void setPatientResult(String patientResult) {
 		this.patientResult = patientResult;
 	}
 	
