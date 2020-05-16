@@ -83,6 +83,13 @@ public class Results extends HttpServlet {
 				}else {
 					if(fileItem.getSize() > 0) {
 						fileItem.write(new File("C:\\uploaded_files\\" + fileItem.getName()));
+						//////////////////////////////////////////////
+						boolean booleanVar = true; //////// SPARK RETURN
+						
+						PatientBean ptBn = new PatientBean();
+						ptBn.setPatientName(file_name);
+						ptBn.setPatientResult(booleanVar);
+						/////////////////////////////////////////////////
 					}
 				}
 			}

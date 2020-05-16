@@ -26,6 +26,25 @@
 				</tr>
 			</table>
 		</form>
+		
+		<%
+		String file_name = (String)request.getParameter("filename");
+		if(file_name!=null){
+			out.println(file_name+" File uploaded successfuly");
+			
+			/**
+			* INSERT SPARK
+			*/			
+			
+			// Return results from Spark	
+	
+			out.println( "<html><body><h1 align='center'>Image Results</h1>"
+					+ "<br> Tumor present in </br>" 
+					+ "</body></html>");
+		}
+		
+		%>
+		
 	</center>
 </body>
 </html>
