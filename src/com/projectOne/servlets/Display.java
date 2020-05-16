@@ -64,8 +64,8 @@ public class Display extends HttpServlet {
 		
 		long linesCount = filteredLines.count();
 		String firstLine = filteredLines.first();
-		System.out.println("Total lines containing spark: " + linesCount);
-		System.out.println("First line containing spark: " + firstLine);
+		out.println("Total lines containing spark: " + linesCount);
+		out.println("First line containing spark: " + firstLine);
 		sc.close();
 				
 	}
