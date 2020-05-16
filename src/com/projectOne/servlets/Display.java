@@ -55,10 +55,11 @@ public class Display extends HttpServlet {
 		conf.setAppName("Spark Demo Job");
 		conf.setMaster("local");
 		JavaSparkContext sc = new JavaSparkContext(conf);
-		JavaRDD<String> lines = sc.textFile("input.txt"); 
+		JavaRDD<String> lines = sc.textFile("C:/uploaded_files/input.csv"); 
 		JavaRDD<String> filteredLines = lines.filter(new Function<String, Boolean>(){
 				public Boolean call(String line) throws Exception{
-					return line.contains("spark");
+					int lineInt = Integer.parseInt(line);
+					return lineInt >= 80;//line.contains("spark");
 				}
 		});
 		
