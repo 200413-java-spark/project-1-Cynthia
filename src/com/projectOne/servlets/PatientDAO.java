@@ -10,7 +10,7 @@ public class PatientDAO {
 		int status=0;
 		try {
 			conn=ConnectionProvider.getCon();
-			pst=conn.prepareStatement("insert into patient values(?,?)");
+			pst=conn.prepareStatement("insert into classificationResults(patientname, patientresult) values(?,?)");
 			pst.setString(1, "hi");// u.getPatientName()
 			pst.setBoolean(2, false);// u.isPatientResult()
 			status=pst.executeUpdate();
