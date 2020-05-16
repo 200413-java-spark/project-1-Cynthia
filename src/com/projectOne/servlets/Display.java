@@ -31,6 +31,10 @@ public class Display extends HttpServlet {
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		PrintWriter out = response.getWriter();
 		out.println("Welcome To Display");
+		
+		PatientDAO.insertPatient();
+		
+		out.println("Test SQL");
 	}
 
 	/**
