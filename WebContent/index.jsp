@@ -10,7 +10,7 @@
 	<center>
 		<h1>Upload Image to Database</h1>
 		<form method="post" action="Results" enctype="multipart/form-data">
-			<table border = "0">
+			<table>
 				<tr>
 					<td>Enter Dicome Volume Name</td>
 					<td><input type="text" name="file_name"/></td>
