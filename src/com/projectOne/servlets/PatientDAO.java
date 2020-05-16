@@ -6,6 +6,10 @@ public class PatientDAO {
 	static Connection conn;
 	static PreparedStatement pst;
 	
+	public static void processSpark() {
+		
+	}
+	
 	public static int insertPatient() { //PatientBean u
 		int status=0;
 		try {
