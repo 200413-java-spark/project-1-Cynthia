@@ -54,6 +54,9 @@ public class Results extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		RequestDispatcher rd = request.getRequestDispatcher("/Display");
+		rd.forward(request, response);
+		
 		String file_name = null;
 		
 		response.setContentType("text/html");

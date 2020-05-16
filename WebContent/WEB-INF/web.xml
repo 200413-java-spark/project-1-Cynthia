@@ -13,10 +13,19 @@
   <servlet>
   	<servlet-name>Results</servlet-name>	
   	<servlet-class>com.projectOne.servlets.Results</servlet-class>
-  </servlet>
+  </servlet> 
   <servlet-mapping>
   	<servlet-name>Results</servlet-name>
   	<url-pattern>/Results/*</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>Display</servlet-name>	
+  	<servlet-class>com.projectOne.servlets.Display</servlet-class>
+  </servlet> 
+  <servlet-mapping>
+  	<servlet-name>Display</servlet-name>
+  	<url-pattern>/Display/*</url-pattern>
   </servlet-mapping>
   
 </web-app>

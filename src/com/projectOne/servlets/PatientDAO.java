@@ -6,13 +6,13 @@ public class PatientDAO {
 	static Connection conn;
 	static PreparedStatement pst;
 	
-	public static int insertPatient(PatientBean u) {
+	public static int insertPatient() { //PatientBean u
 		int status=0;
 		try {
 			conn=ConnectionProvider.getCon();
 			pst=conn.prepareStatement("insert into patient values(?,?)");
-			pst.setString(1, u.getPatientName());//
-			pst.setBoolean(2, u.isPatientResult());
+			pst.setString(1, "hi");// u.getPatientName()
+			pst.setBoolean(2, false);// u.isPatientResult()
 			status=pst.executeUpdate();
 			conn.close();
 			
