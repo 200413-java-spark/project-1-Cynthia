@@ -8,7 +8,7 @@
 </head>
 <body>
 	<center>
-		<h1>Automated Gray Matter to White Matter Ratio Processor</h1>
+		<h1>Automated Gray & White Matter Segmentation with Apache Spark</h1>
 		<h2>Please upload region of interest (ROI) to database</h2>
 		<form method="post" action="Results" enctype="multipart/form-data">
 			<table>
@@ -28,23 +28,7 @@
 			</table>
 		</form>
 		
-		<%
-		String file_name = (String)request.getParameter("filename");
-		if(file_name!=null){
-			out.println(file_name+" File uploaded successfuly");
-			
-			/**
-			* INSERT SPARK
-			*/			
-			
-			// Return results from Spark	
-	
-			out.println( "<html><body><h1 align='center'>Image Results</h1>"
-					+ "<br> Tumor present in </br>" 
-					+ "</body></html>");
-		}
 		
-		%>
 		
 	</center>
 </body>

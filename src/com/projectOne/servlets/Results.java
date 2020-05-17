@@ -27,27 +27,6 @@ public class Results extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		// TODO Auto-generated method stub
-//		//response.getWriter().append("Served at: ").append(request.getContextPath());
-//		PrintWriter out = response.getWriter();
-//		
-//		// Remove this line for functions
-//		//double sqrtvalue = Math.sqrt(4.0);
-//		
-//		
-//		// Return results from Spark
-//		boolean booleanVar = true;
-//		boolean booleanVar2 = false;
-//	
-//		out.println( "<html><body><h1 align='center'>Image Results</h1>"
-//				+ "<br> Tumor present in Image 1: " + booleanVar + "</br>" 
-//				+ "<br> Tumor present in Image 2: " + booleanVar2 + "</br>" 
-//				+ "</body></html>");
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -81,20 +60,13 @@ public class Results extends HttpServlet {
 				if(isFormField) {
 					if(file_name == null) {
 						if(fileItem.getFieldName().equals("file_name")) {
-							file_name = fileItem.getString();
+							file_name = fileItem.getString(); //////////
 						}
 					}
 				}else {
 					if(fileItem.getSize() > 0) {
 						fileItem.write(new File("C:\\uploaded_files\\" + fileItem.getName()));
-						
-						//////////////////////////////////////////////
-//						boolean booleanVar = true; //////// SPARK RETURN
-//						
-//						PatientBean ptBn = new PatientBean();
-//						ptBn.setPatientName(file_name);
-//						ptBn.setPatientResult(booleanVar);
-						/////////////////////////////////////////////////
+
 					}
 				}
 			}
@@ -104,6 +76,7 @@ public class Results extends HttpServlet {
 			out.println("<script type='text/javascript'>");
 			out.println("window.location.href='index.jsp?filename="+file_name+"'");
 			out.println("</script>");
+			
 			out.close();
 		}
 	}

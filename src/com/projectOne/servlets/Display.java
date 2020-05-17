@@ -2,33 +2,19 @@ package com.projectOne.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Iterator;
-import java.util.List;
+
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.*;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.ml.classification.MultilayerPerceptronClassificationModel;
-import org.apache.spark.ml.classification.MultilayerPerceptronClassifier;
-import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator;
-import org.apache.spark.ml.param.ParamMap;
-import org.apache.spark.mllib.regression.LabeledPoint;
-import org.apache.spark.mllib.util.MLUtils;
-import org.apache.spark.mllib.linalg.Vectors;
-import org.apache.spark.sql.Row;
-import org.apache.spark.sql.SQLContext;
+
 
 /**
  * Servlet implementation class Display
@@ -58,7 +44,7 @@ public class Display extends HttpServlet {
 		conf.setAppName("Spark Process");
 		conf.setMaster("local");
 		JavaSparkContext sc = new JavaSparkContext(conf);
-		JavaRDD<String> lines = sc.textFile("C:/uploaded_files/input.csv"); 
+		JavaRDD<String> lines = sc.textFile("C:/uploaded_files/input.csv"); // multipart form extraction index.jsp
 		JavaRDD<String> filteredLines = lines.filter(new Function<String, Boolean>(){
 				public Boolean call(String line) throws Exception{
 					int lineInt = Integer.parseInt(line);
@@ -70,14 +56,14 @@ public class Display extends HttpServlet {
 		out.println("<h1> Results </h1>");
 		out.println("<h2> Percentage of Gray Matter in Region of Interest: " + linesCount/25 + "</h2>");
 		out.println("<h2>Percentage of White Matter in Region of Interest: " + (100-(linesCount/25)) + "</h2>");
+		// Load results into patient
+		PatientBean pBBB = new PatientBean(); //write to server non-static
+        pBBB.setPatientName("Brain"); // multipart form extraction index.jsp
+		pBBB.setPatientResult(linesCount + ": " + (2500-linesCount)); ////
+		
 		sc.close();
-		
-		PatientBean pBB = new PatientBean();
-		String ptName = request.getParameter("file_name");		
-		pBB.setPatientName(ptName); ////
-		pBB.setPatientResult(linesCount + ": " + (2500-linesCount)); ////
-		
-		PatientDAO.insertPatient(pBB);
+
+		PatientDAO.insertPatient(pBBB);
 				
 	}
 
